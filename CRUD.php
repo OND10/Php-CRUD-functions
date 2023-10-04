@@ -40,8 +40,11 @@ function add($table, ...$args)
             $index++;
         }
 
-        // Prepare the SQL statement
+        // Prepare the SQL statement :)
+        //impload is a build in function used to joins the elements of an array into a single string. It is the opposite of explode.
         $columns = implode(', ', $columns);
+        //retrim is a build in function used to remove the trailing comma and space from the generated string-> the white space from the end.
+        //str_repeat a build in function used to repeats a string a specified number of times. It takes two parameters (string,number);
         $placeholders = rtrim(str_repeat('?, ', count($args) / 2), ', ');
         $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
         $stmt = $con->prepare($sql);
